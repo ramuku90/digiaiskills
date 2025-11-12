@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DigiAISkills - Master the Future of Technology</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 50%, #0f0f23 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #fff;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            padding: 30px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+            cursor: pointer;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        nav a {
+            color: #a0a0b0;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+            cursor: pointer;
+        }
+
+        nav a:hover, nav a.active {
+            color: #667eea;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after, nav a.active::after {
+            width: 100%;
+        }
+
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero {
+            text-align: center;
+            padding: 60px 0 40px;
+        }
+
+        h1 {
+            font-size: 56px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ffffff 0%, #667eea 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #ffffff 0%, #667eea 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 20px;
+            color: #9090a0;
+            margin-bottom: 50px;
+        }
+
+        .chat-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(26, 26, 46, 0.6);
+            border-radius: 24px;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+            padding: 25px 30px;
+            border-bottom: 1px solid rgba(102, 126, 234, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            background: #10b981;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .chat-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .chat-messages {
+            padding: 30px;
+            min-height: 400px;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .chat-messages::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .chat-messages::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        .chat-messages::-webkit-scrollbar-thumb {
+            background: rgba(102, 126, 234, 0.5);
+            border-radius: 10px;
+        }
+
+        .message {
+            margin-bottom: 25px;
+            display: flex;
+            gap: 15px;
+            animation: slideIn 0.4s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .user-avatar {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .ai-avatar {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .message-content {
+            flex: 1;
+        }
+
+        .message-text {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px 20px;
+            border-radius: 16px;
+            line-height: 1.6;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .user-message .message-text {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+        }
+
+        .typing-indicator {
+            display: flex;
+            gap: 5px;
+            padding: 15px 20px;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: #667eea;
+            border-radius: 50%;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-10px); }
+        }
+
+        .chat-input-container {
+            padding: 25px 30px;
+            background: rgba(15, 15, 35, 0.8);
+            border-top: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .input-wrapper {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        #messageInput {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            border-radius: 16px;
+            padding: 15px 20px;
+            color: #fff;
+            font-size: 15px;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        #messageInput:focus {
+            border-color: #667eea;
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        #messageInput::placeholder {
+            color: #606070;
+        }
+
+        .send-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            padding: 15px 30px;
+            border-radius: 16px;
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .send-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        .send-btn:active {
+            transform: translateY(0);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+            padding-bottom: 80px;
+        }
+
+        .feature-card {
+            background: rgba(26, 26, 46, 0.4);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: #667eea;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .feature-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .feature-desc {
+            color: #9090a0;
+            line-height: 1.6;
+        }
+
+        /* Courses Page */
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+            padding-bottom: 80px;
+        }
+
+        .course-card {
+            background: rgba(26, 26, 46, 0.6);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .course-card:hover {
+            transform: translateY(-10px);
+            border-color: #667eea;
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+        }
+
+        .course-image {
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+        }
+
+        .course-content {
+            padding: 25px;
+        }
+
+        .course-category {
+            display: inline-block;
+            background: rgba(102, 126, 234, 0.2);
+            color: #667eea;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .course-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .course-desc {
+            color: #9090a0;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .course-duration {
+            color: #9090a0;
+            font-size: 14px;
+        }
+
+        .course-price {
+            font-size: 24px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* AI Tools Page */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+            padding-bottom: 80px;
+        }
+
+        .tool-card {
+            background: rgba(26, 26, 46, 0.6);
+            padding: 35px;
+            border-radius: 20px;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+            border-color: #667eea;
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+        }
+
+        .tool-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .tool-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 35px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .tool-info h3 {
+            font-size: 24px;
+            color: #fff;
+            margin-bottom: 5px;
+        }
+
+        .tool-status {
+            display: inline-block;
+            background: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .tool-desc {
+            color: #9090a0;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        .tool-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .tool-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.5);
+        }
+
+        /* About Page */
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding-bottom: 80px;
+        }
+
+        .about-section {
+            background: rgba(26, 26, 46, 0.6);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            backdrop-filter: blur(10px);
+            margin-bottom: 30px;
+        }
+
+        .about-section h3 {
+            font-size: 28px;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .about-section p {
+            color: #9090a0;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 30px;
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 16px;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .stat-number {
+            font-size: 42px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: #9090a0;
+            font-size: 14px;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .team-member {
+            text-align: center;
+            padding: 30px;
+            background: rgba(26, 26, 46, 0.6);
+            border-radius: 16px;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            transition: all 0.3s;
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+            border-color: #667eea;
+        }
+
+        .team-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+        }
+
+        .team-name {
+            font-size: 20px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 5px;
+        }
+
+        .team-role {
+            color: #667eea;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .team-desc {
+            color: #9090a0;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 36px;
+            }
+
+            h2 {
+                font-size: 32px;
+            }
+
+            nav ul {
+                gap: 20px;
+                font-size: 14px;
+            }
+
+            .features, .courses-grid, .tools-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars" id="stars"></div>
+
+    <div class="container">
+        <header>
+            <div class="logo" onclick="showPage('home')">DigiAISkills</div>
+            <nav>
+                <ul>
+                    <li><a onclick="showPage('home')" class="nav-link active">Home</a></li>
+                    <!-- <li><a onclick="showPage('courses')" class="nav-link">Courses</a></li> -->
+                    <li><a onclick="showPage('ai-tools')" class="nav-link">AI Tools</a></li>
+                    <li><a onclick="showPage('about')" class="nav-link">About</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- HOME PAGE -->
+        <div id="home" class="page active">
+            <section class="hero">
+                <h1>Master AI-Powered Tech Skills</h1>
+                <p class="subtitle">Learn cutting-edge technology with our intelligent learning assistant</p>
+            </section>
+
+            <div class="chat-container">
+                <div class="chat-header">
+                    <div class="status-indicator"></div>
+                    <div class="chat-title">AI Learning Assistant</div>
+                </div>
+
+                <div class="chat-messages" id="chatMessages">
+                    <div class="message">
+                        <div class="avatar ai-avatar">AI</div>
+                        <div class="message-content">
+                            <div class="message-text">
+                                👋 Welcome to DigiAISkills! I'm your AI learning companion. I can help you explore courses in Web Development, Data Science, Machine Learning, Cloud Computing, and more. What would you like to learn today?
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="message user-message">
+                        <div class="avatar user-avatar">U</div>
+                        <div class="message-content">
+                            <div class="message-text">
+                                I'm interested in learning about Machine Learning. Where should I start?
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="message">
+                        <div class="avatar ai-avatar">AI</div>
+                        <div class="message-content">
+                            <div class="message-text">
+                                Great choice! 🚀 Machine Learning is an exciting field. I recommend starting with:<br><br>
+                                1. <strong>Python Fundamentals</strong> - Essential programming basics<br>
+                                2. <strong>Data Analysis with Pandas</strong> - Learn to work with data<br>
+                                3. <strong>ML Algorithms</strong> - Understanding core concepts<br>
+                                4. <strong>Hands-on Projects</strong> - Build real-world applications<br><br>
+                                Would you like me to create a personalized learning path for you?
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chat-input-container">
+                    <div class="input-wrapper">
+                        <input type="text" id="messageInput" placeholder="Ask me anything about tech skills...">
+                        <button class="send-btn" onclick="sendMessage()">Send</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <div class="feature-title">AI-Powered Learning</div>
+                    <div class="feature-desc">Get personalized course recommendations and learning paths tailored to your goals</div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">💻</div>
+                    <div class="feature-title">Hands-On Projects</div>
+                    <div class="feature-desc">Build real-world projects and create an impressive portfolio</div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🎓</div>
+                    <div class="feature-title">Expert Mentorship</div>
+                    <div class="feature-desc">Learn from industry professionals with years of experience</div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <div class="feature-title">Fast-Track Career</div>
+                    <div class="feature-desc">Accelerate your tech career with in-demand skills and certifications</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- COURSES PAGE -->
+        <div id="courses" class="page">
+            <section class="hero">
+                <h2>Explore Our Courses</h2>
+                <p class="subtitle">World-class tech education designed for the future</p>
+            </section>
+
+            <div class="courses-grid">
+                <div class="course-card">
+                    <div class="course-image">🤖</div>
+                    <div class="course-content">
+                        <span class="course-category">AI & ML</span>
+                        <div class="course-title">Machine Learning Mastery</div>
+                        <div class="course-desc">Master ML algorithms, deep learning, and neural networks. Build AI models from scratch.</div>
+                        <div class="course-meta">
+                            <span class="course-duration">⏱️ 12 weeks</span>
+                            <span class="course-price">$299</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">💻</div>
+                    <div class="course-content">
+                        <span class="course-category">Web Dev</span>
+                        <div class="course-title">Full Stack Development</div>
+                        <div class="course-desc">Learn React, Node.js, databases, and deployment. Build complete web applications.</div>
+                        <div class="course-meta">
+                            <span class="course-duration">⏱️ 16 weeks</span>
+                            <span class="course-price">$349</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">📊</div>
+                    <div class="course-content">
+                        <span class="course-category">Data Science</span>
+                        <div class="course-title">Data Science Pro</div>
+                        <div class="course-desc">Python, statistics, visualization, and predictive analytics for data-driven decisions.</div>
+                        <div class="course-meta">
+                            <span class="course-duration">⏱️ 14 weeks</span>
+                            <span class="course-price">$329</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-image" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">☁️</div>
+                    <div class="course-content">
+                        <span class="course-category">Cloud</span>
+                        <div class="course-title">Cloud Architecture</div>
+                        <div class="course-desc">AWS, Azure, GCP - Design and deploy scalable cloud infrastructure.</div>
+                        <div class="course-meta">
+                            <span class="course-duration">⏱️ 10 weeks</span>
+                            <span class="course-price">$279</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-image" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">🔐</div>
+                    <div class="course-content">
+                        <span class="course-category">Security</span>
+                        <div class="course-title">Cybersecurity Essentials</div>
+                        <div class="course-desc">Ethical hacking, network security, and threat detection techniques.</div>
+                        <div class="course-meta">
+                            <span class="course-duration">⏱️ 8 weeks</span>
+                            <span class="course-price">$249</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-image" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);">📱</div>
+                    <div class="course-content">
+                        <span class="course-category">Mobile</span>
+                        <div class="course-title">Mobile App Development</div>
+                        <div class="course-desc">Build native iOS and Android apps with React Native and Flutter.</div>
+                        <div class="course-meta">
+                            <span class="course-duration">⏱️ 12 weeks</span>
+                            <span class="course-price">$299</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI TOOLS PAGE -->
+        <div id="ai-tools" class="page">
+            <section class="hero">
+                <h2>AI-Powered Learning Tools</h2>
+                <p class="subtitle">Accelerate your learning with our intelligent tools</p>
+            </section>
+
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-icon">🧠</div>
+                        <div class="tool-info">
+                            <h3>Code Assistant</h3>
+                            <span class="tool-status">● Live</span>
+                        </div>
+                    </div>
+                    <div class="tool-desc">
+                        AI-powered code completion, debugging, and optimization. Get instant help with your programming challenges and learn best practices in real-time.
+                    </div>
+                    <a href="#" class="tool-btn">Try Now</a>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-icon">📝</div>
+                        <div class="tool-info">
+                            <h3>Smart Notes</h3>
+                            <span class="tool-status">● Live</span>
+                        </div>
+                    </div>
+                    <div class="tool-desc">
+                        Automatically generate summaries, flashcards, and mind maps from your course materials. AI organizes your learning for maximum retention.
+                    </div>
+                    <a href="#" class="tool-btn">Launch Tool</a>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-icon">🎯</div>
+                        <div class="tool-info">
+                            <h3>Career Path Advisor</h3>
+                            <span class="tool-status">● Live</span>
+                        </div>
+                    </div>
+                    <div class="tool-desc">
+                        Get personalized career recommendations based on your skills, interests, and market trends. Plan your tech career with AI insights.
+                    </div>
+                    <a href="#" class="tool-btn">Get Started</a>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-icon">🔍</div>
+                        <div class="tool-info">
+                            <h3>Project Analyzer</h3>
+                            <span class="tool-status">● Live</span>
+                        </div>
+                    </div>
+                    <div class="tool-desc">
+                        Submit your projects for AI-powered code review, performance analysis, and improvement suggestions. Learn from detailed feedback.
+                    </div>
+                    <a href="#" class="tool-btn">Analyze Code</a>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-icon">🎓</div>
+                        <div class="tool-info">
+                            <h3>Interview Prep AI</h3>
+                            <span class="tool-status">● Live</span>
+                        </div>
+                    </div>
+                    <div class="tool-desc">
+                        Practice technical interviews with AI. Get real-time feedback on your answers, coding solutions, and communication skills.
+                    </div>
+                    <a href="#" class="tool-btn">Start Practice</a>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-icon">📊</div>
+                        <div class="tool-info">
+                            <h3>Progress Tracker</h3>
+                            <span class="tool-status">● Live</span>
+                        </div>
+                    </div>
+                    <div class="tool-desc">
+                        AI-driven analytics of your learning progress. Get insights on strengths, weaknesses, and personalized study recommendations.
+                    </div>
+                    <a href="#" class="tool-btn">View Dashboard</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ABOUT PAGE -->
+        <div id="about" class="page">
+            <section class="hero">
+                <h2>About DigiAISkills</h2>
+                <p class="subtitle">Empowering the next generation of tech innovators</p>
+            </section>
+
+            <div class="about-content">
+                <div class="about-section">
+                    <h3>Our Mission</h3>
+                    <p>
+                        At DigiAISkills, we're revolutionizing tech education by combining cutting-edge AI technology with expert instruction. Our mission is to make world-class tech education accessible, personalized, and effective for everyone, regardless of their background or location.
+                    </p>
+                    <p>
+                        We believe that the future belongs to those who can adapt and learn continuously. That's why we've built an AI-powered learning platform that evolves with you, providing personalized guidance every step of your journey.
+                    </p>
+                </div>
+
+                <div class="about-section">
+                    <h3>Why Choose Us</h3>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number">50K+</div>
+                            <div class="stat-label">Active Students</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">200+</div>
+                            <div class="stat-label">Expert Instructors</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">95%</div>
+                            <div class="stat-label">Success Rate</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">40+</div>
+                            <div class="stat-label">Courses</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-section">
+                    <h3>Our Story</h3>
+                    <p>
+                        Founded in 2023, DigiAISkills was born from a simple observation: traditional education wasn't keeping pace with the rapidly evolving tech industry. Our founders, a team of AI researchers and education experts, saw an opportunity to leverage artificial intelligence to create a more adaptive, efficient, and engaging learning experience.
+                    </p>
+                    <p>
+                        Today, we're proud to serve thousands of students worldwide, helping them transform their careers and achieve their dreams in technology. Our AI-powered platform has helped students land jobs at top tech companies, launch successful startups, and become leaders in their fields.
+                    </p>
+                </div>
+
+                <div class="about-section">
+                    <h3>Meet Our Team</h3>
+                    <div class="team-grid">
+                        <div class="team-member">
+                            <div class="team-avatar">👨‍💼</div>
+                            <div class="team-name">Alex Chen</div>
+                            <div class="team-role">CEO & Co-Founder</div>
+                            <div class="team-desc">Former AI researcher at MIT. Passionate about democratizing tech education.</div>
+                        </div>
+
+                        <div class="team-member">
+                            <div class="team-avatar">👩‍💻</div>
+                            <div class="team-name">Sarah Johnson</div>
+                            <div class="team-role">CTO & Co-Founder</div>
+                            <div class="team-desc">10+ years building ML systems. Expert in educational technology.</div>
+                        </div>
+
+                        <div class="team-member">
+                            <div class="team-avatar">👨‍🏫</div>
+                            <div class="team-name">Michael Rodriguez</div>
+                            <div class="team-role">Head of Education</div>
+                            <div class="team-desc">Curriculum designer with 15 years of teaching experience.</div>
+                        </div>
+
+                        <div class="team-member">
+                            <div class="team-avatar">👩‍🔬</div>
+                            <div class="team-name">Dr. Emily Park</div>
+                            <div class="team-role">Chief AI Officer</div>
+                            <div class="team-desc">PhD in Machine Learning. Leading our AI research initiatives.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-section">
+                    <h3>Get In Touch</h3>
+                    <p>
+                        Have questions? Want to partner with us? We'd love to hear from you!
+                    </p>
+                    <p>
+                        📧 Email: contact@digiaiskills.com<br>
+                        📱 Phone: +1 (555) 123-4567<br>
+                        📍 Address: 123 Tech Street, Silicon Valley, CA 94025
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Create animated stars
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 100; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            starsContainer.appendChild(star);
+        }
+
+        // Page navigation
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Update nav links
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => link.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Chat functionality
+        function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const message = input.value.trim();
+            
+            if (message) {
+                const chatMessages = document.getElementById('chatMessages');
+                
+                // Add user message
+                const userMsg = document.createElement('div');
+                userMsg.className = 'message user-message';
+                userMsg.innerHTML = `
+                    <div class="avatar user-avatar">U</div>
+                    <div class="message-content">
+                        <div class="message-text">${message}</div>
+                    </div>
+                `;
+                chatMessages.appendChild(userMsg);
+                
+                // Clear input
+                input.value = '';
+                
+                // Scroll to bottom
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+                
+                // Show typing indicator
+                setTimeout(() => {
+                    const typingMsg = document.createElement('div');
+                    typingMsg.className = 'message';
+                    typingMsg.id = 'typing';
+                    typingMsg.innerHTML = `
+                        <div class="avatar ai-avatar">AI</div>
+                        <div class="message-content">
+                            <div class="message-text typing-indicator">
+                                <div class="typing-dot"></div>
+                                <div class="typing-dot"></div>
+                                <div class="typing-dot"></div>
+                            </div>
+                        </div>
+                    `;
+                    chatMessages.appendChild(typingMsg);
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                    
+                    // Simulate AI response
+                    setTimeout(() => {
+                        const typingEl = document.getElementById('typing');
+                        if (typingEl) typingEl.remove();
+                        
+                        const responses = [
+                            "I'd be happy to help you with that! Let me find the best resources and create a customized learning plan for you. 🎯",
+                            "That's a great question! Based on your interests, I recommend checking out our courses page. What's your current skill level? 📚",
+                            "Excellent choice! I can guide you through the learning process step by step. Would you like to start with fundamentals or dive into advanced topics? 🚀",
+                            "I understand what you're looking for. Let me connect you with the right course and learning materials. What's your preferred learning style? 💡",
+                            "Perfect! I've helped many students with similar goals. Let's create a personalized roadmap for your success! 🎓"
+                        ];
+                        
+                        const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+                        
+                        const aiMsg = document.createElement('div');
+                        aiMsg.className = 'message';
+                        aiMsg.innerHTML = `
+                            <div class="avatar ai-avatar">AI</div>
+                            <div class="message-content">
+                                <div class="message-text">${randomResponse}</div>
+                            </div>
+                        `;
+                        chatMessages.appendChild(aiMsg);
+                        chatMessages.scrollTop = chatMessages.scrollHeight;
+                    }, 1500);
+                }, 500);
+            }
+        }
+
+        // Allow Enter key to send message
+        document.getElementById('messageInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+</html>
+                
